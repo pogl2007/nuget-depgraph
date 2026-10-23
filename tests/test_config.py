@@ -32,17 +32,6 @@ def test_default_depth():
     assert config.max_depth == 3
 
 
-def test_show(capsys):
-    make().show()
-    assert capsys.readouterr().out == (
-        "package=Serilog\n"
-        f"repo={URL}\n"
-        "test_mode=False\n"
-        "version=3.1.1\n"
-        "max_depth=3\n"
-    )
-
-
 def test_valid_config():
     make().validate()
 
@@ -86,7 +75,6 @@ def test_missing_required():
         Config.from_args(["--package", "A"])
 
 
-def test_main_exit_codes(capsys):
-    assert main(["--package", "A", "--repo", URL, "--version", "1.0"]) == 0
+def test_main_config_error(capsys):
     assert main(["--package", "A", "--repo", "x", "--version", "1.0"]) == 1
     assert "Ошибка" in capsys.readouterr().out

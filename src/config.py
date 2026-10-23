@@ -41,19 +41,6 @@ class Config:
         return cls(args.package, args.repo, args.version,
                    args.max_depth, args.test_mode)
 
-    def items(self):
-        return [
-            ("package", self.package),
-            ("repo", self.repo),
-            ("test_mode", self.test_mode),
-            ("version", self.version),
-            ("max_depth", self.max_depth),
-        ]
-
-    def show(self):
-        for key, value in self.items():
-            print(f"{key}={value}")
-
     def check_package(self):
         if not self.package:
             return "Ошибка: имя пакета не может быть пустым"
